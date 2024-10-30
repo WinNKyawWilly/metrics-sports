@@ -187,7 +187,7 @@
           }
   
           // Make API call
-          const response = await fetch('http://10.125.97.26:3001/api/v1/contact', {
+          const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/v1/contact`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
