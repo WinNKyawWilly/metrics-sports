@@ -28,9 +28,9 @@
                     <button class="text-gray-600 hover:text-gray-900">
                         <i class="fa-solid fa-cart-shopping fa-lg" style="color: #19204e"></i>
                     </button>
-                    <button class="text-gray-600 hover:text-gray-900">
+                    <RouterLink to="/login" class="text-gray-600 hover:text-gray-900">
                         <i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
-                    </button>
+                    </RouterLink>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -66,7 +66,10 @@
                     <button class="text-gray-600 hover:text-gray-900">
                         <i class="fa-solid fa-cart-shopping fa-lg" style="color: #19204e"></i>
                     </button>
-                    <button class="text-gray-600 hover:text-gray-900">
+                    <button 
+                        class="text-gray-600 hover:text-gray-900"
+                        href="/login"   
+                        >
                         <i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
                     </button>
                 </div>
@@ -75,27 +78,22 @@
     </nav>
 </template>
 
-<script lang="ts">
-export default {
-    name: 'NavigationBar',
-    data() {
-        return {
-            isMenuOpen: false,
-            searchQuery: '',
-            navItems: [
-                { name: 'Shop', href: '#' },
-                { name: 'Brands', href: '#' },
-                { name: 'Accessories', href: '#' },
-                { name: 'Sportswear', href: '#' },
-                { name: 'Contact us', href: '#' }
-            ]
-        }
-    },
-    methods: {
-        toggleMenu() {
-            this.isMenuOpen = !this.isMenuOpen
-        }
-    }
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
+const isMenuOpen = ref(false);
+const searchQuery = ref('');
+const navItems = ref([
+    { name: 'Shop', href: '#' },
+    { name: 'Brands', href: '#' },
+    { name: 'Accessories', href: '#' },
+    { name: 'Sportswear', href: '#' },
+    { name: 'Contact us', href: '#' }
+]);
+
+function toggleMenu() {
+    isMenuOpen.value = !isMenuOpen.value;
 }
 </script>
 
