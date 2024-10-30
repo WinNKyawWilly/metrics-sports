@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NavBar from '@/layouts/NavBar.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
 const products = [
@@ -51,7 +50,6 @@ const products = [
 
 <template>
     <main>
-        <NavBar />
         <h1 class="text-left text-4xl font-semibold m-8">All Products</h1>
         <hr />
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-8">

@@ -92,7 +92,8 @@
             <!-- Logo and Copyright -->
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <h1 class="text-2xl font-bold text-white">Apex Sports Store</h1>
+                    <img src="@/assets/images/Apex-logos_white.png" alt="Apex Sports Logo"
+                        class="h-8 md:h-10 w-auto object-contain" />
                 </div>
                 <div class="text-gray-400 text-sm">
                     © 2024 Apex Sports Store. All rights reserved.

@@ -1,5 +1,4 @@
 <template>
-  <NavBar />
   <div class="min-h-screen flex items-center justify-center p-4 bg-gray-100">
     <div class="w-full max-w-6xl bg-white rounded-lg shadow-lg overflow-hidden">
       <!-- Alert for success/error messages -->
@@ -114,19 +113,12 @@
       </div>
     </div>
   </div>
-  <FooterSection />
 </template>
 
 <script lang="ts">
-import NavBar from '@/layouts/NavBar.vue'
-import FooterSection from '@/components/FooterSection.vue'
 
 export default {
   name: 'ContactUs',
-  components: {
-    NavBar,
-    FooterSection
-  },
   data() {
     return {
       form: {
