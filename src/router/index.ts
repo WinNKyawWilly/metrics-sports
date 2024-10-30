@@ -6,8 +6,10 @@ import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import ContactUs from '@/views/ContactUs.vue'
 import ProductDisplay from '@/views/ProductDisplay.vue'
-import CheckOut from '@/views/CheckOut.vue'
 import AccountInfo from '@/views/AccountInfo.vue'
+import Cart from '@/views/CartView.vue'
+import { useAuthStore } from '@/stores/auth'
+import { toast } from 'vue3-toastify'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,9 +51,9 @@ const router = createRouter({
       component: ProductDisplay,
     },
     {
-      path: '/checkout',
-      name: 'checkout',
-      component: CheckOut,
+      path: '/cart',
+      name: 'cart',
+      component: Cart,
     },
     {
       path: '/account',
@@ -59,6 +61,17 @@ const router = createRouter({
       component: AccountInfo,
     }
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+
+  if ((to.name === 'login' || to.name === 'signup') && authStore.isLoggedIn) {
+    setTimeout(() => toast('You are already logged in', { type: 'info' }), 500)
+    next({ name: 'home' })
+  } else {
+    next()
+  }
 })
 
 export default router

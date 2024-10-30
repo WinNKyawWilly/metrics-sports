@@ -9,7 +9,7 @@ defineProps<{
 
 const router = useRouter()
 const navigateToProduct = product => {
-  router.push(`/products/${product.id}`)
+  router.push(`/products/${product.slug}`)
 }
 const mediaBaseUrl = ref<string>(import.meta.env.VITE_MEDIA_BASE_URL);
 </script>

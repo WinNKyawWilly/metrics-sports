@@ -6,9 +6,19 @@ export interface HomePageProduct {
   featuredProducts: Product[]
 }
 
+export interface ProductResponseDto {
+  product: Product
+  relatedProducts: Product[]
+}
+
 export const productService = {
   async getHomePageProducts() {
     const { data }: { data: HomePageProduct } = await apiClient.get('/homepage')
+    return data
+  },
+
+  async getProduct(productId: number): Promise<ProductResponseDto> {
+    const { data } = await apiClient.get(`/products/${productId}`)
     return data
   },
 }

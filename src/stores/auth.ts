@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { Customer } from '@/types/Customer'
 import { CustomerAuthService } from '@/services/CustomerAuthService'
-import { toast } from 'vue3-toastify'
 import { useStorage } from '@vueuse/core'
 
 interface AuthState {
