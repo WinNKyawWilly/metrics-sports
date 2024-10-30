@@ -35,10 +35,10 @@ const navigateToLogin = () => {
           <div class="relative flex items-center">
             <input
               id="name"
-              type="name"
+              type="text"
               v-model="name"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Full Name"
             />
             <i class="absolute right-3 fas fa-address-book"></i>
@@ -50,7 +50,7 @@ const navigateToLogin = () => {
               type="email"
               v-model="email"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Email"
             />
             <i class="absolute right-3 fas fa-envelope"></i>
@@ -62,7 +62,7 @@ const navigateToLogin = () => {
               type="password"
               v-model="password"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Password"
             />
             <i class="absolute right-3 fas fa-lock"></i>
@@ -74,7 +74,7 @@ const navigateToLogin = () => {
               type="password"
               v-model="confirmPasswords"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Confirm Password"
             />
             <i class="absolute right-3 fas fa-lock"></i>
@@ -86,7 +86,7 @@ const navigateToLogin = () => {
               type="number"
               v-model="phone"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Phone"
             />
             <i class="absolute right-3 fas fa-phone"></i>
@@ -98,13 +98,13 @@ const navigateToLogin = () => {
               type="text"
               v-model="shippingAddress"
               required
-              class="mt-1 block w-full px-3 py-2 border-b border-b-yellow-500 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
+              class="mt-1 block w-full px-3 py-2 border-b focus:border-b-yellow-500 focus:outline-none transition-colors transition-duration-300"
               placeholder="Shipping Address"
             />
             <i class="absolute right-3 fas fa-address-book"></i>
           </div>
 
-          
+
 
           <button
             type="submit"
@@ -115,7 +115,7 @@ const navigateToLogin = () => {
         </form>
 
         <div class="mt-6 text-center">
-          <div class="relative">    
+          <div class="relative">
             <div class="absolute inset-0 flex items-center">
               <div class="w-full border-t border-gray-300"></div>
             </div>
@@ -126,7 +126,7 @@ const navigateToLogin = () => {
 
           <button
             @click="navigateToLogin"
-            class="mt-6 text-yellow-600 hover:text-yellow-500 border border-yellow-500 py-2 px-4"
+            class="mt-6 text-yellow-600 rounded hover:text-yellow-500 border border-yellow-500 py-2 px-4"
           >
             Login
           </button>
@@ -135,8 +135,8 @@ const navigateToLogin = () => {
     </div>
 
     <!-- Right Side - Login Image -->
-    <div class="hidden md:flex md:w-1/2 bg-gray-100 items-center justify-center">
-        <div class="w-3/4 max-w-md p-8">
+    <div class="hidden md:flex md:w-1/2 items-center justify-center">
+        <div class="w-3/4 max-w-md p-4">
             <img
             src="/src/assets/images/customer-signup.svg"
             alt="Login"

@@ -23,15 +23,15 @@
                 <div class="hidden lg:flex items-center space-x-4 ml-4">
                     <div class="relative">
                         <input v-model="searchQuery" type="text" placeholder="Search"
-                            class="bg-slate-200 rounded-full py-1 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64" />
-                        <img src="@/assets/images/search.png" alt="Search Icon"
-                            class="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4" />
+                            class="bg-slate-100 rounded-full py-1 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64" />
+                      <MagnifyingGlassIcon class="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4"></MagnifyingGlassIcon>
+
                     </div>
                     <button class="text-gray-600 hover:text-gray-900">
-                        <i class="fa-solid fa-cart-shopping fa-lg" style="color: #19204e"></i>
+                        <ShoppingBagIcon class="size-6"></ShoppingBagIcon>
                     </button>
                     <RouterLink to="/login" class="text-gray-600 hover:text-gray-900">
-                        <i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
+                        <UserCircleIcon class="size-6"></UserCircleIcon>
                     </RouterLink>
                 </div>
 
@@ -68,9 +68,9 @@
                     <button class="text-gray-600 hover:text-gray-900">
                         <i class="fa-solid fa-cart-shopping fa-lg" style="color: #19204e"></i>
                     </button>
-                    <button 
+                    <button
                         class="text-gray-600 hover:text-gray-900"
-                        href="/login"   
+                        href="/login"
                         >
                         <i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
                     </button>
@@ -84,6 +84,7 @@
 import NavItem from '@/components/NavItem.vue';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import {ShoppingBagIcon, MagnifyingGlassIcon, UserCircleIcon} from '@heroicons/vue/24/outline'
 
 const isMenuOpen = ref(false);
 const searchQuery = ref('');
