@@ -1,13 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+import { toast } from 'vue3-toastify'
 
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+const authStore = useAuthStore()
+const loading = ref(false)
 
 const handleLogin = async () => {
-  console.log('Login attempted with:', email.value, password.value)
+  loading.value = true
+  try {
+    await authStore.login(email.value, password.value)
+    await router.push('/')
+    setTimeout(
+      () =>
+        toast(`Welcome back, ${authStore.customer?.name}!`, {
+          type: 'success',
+        }),
+      500,
+    )
+  } catch (error) {
+    console.error('Error logging in:', error)
+  }
+
+  loading.value = false
 }
 
 const navigateToSignUp = () => {
@@ -55,16 +74,17 @@ const navigateToSignUp = () => {
               required
               class="mt-1 block w-full px-3 py-3 border-b transition-colors transition-duration-300 focus:border-b-yellow-500 shadow-sm focus:outline-none"
               placeholder="Password"
+              autocomplete="current_password"
             />
           </div>
 
           <button
             type="submit"
-            class="w-full flex justify-center py-3 rounded px-4 border border-transparent
-            text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600
-            focus:outline-none"
+            :disabled="loading"
+            class="w-full flex justify-center py-3 rounded px-4 border border-transparent text-sm font-medium text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none"
+            :class="{ 'bg-yellow-300': loading }"
           >
-            Login
+            {{ loading ? 'Logging in...' : 'Login' }}
           </button>
         </form>
 
