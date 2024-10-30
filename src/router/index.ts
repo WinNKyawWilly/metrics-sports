@@ -4,6 +4,8 @@ import ProductView from '@/views/ProductView.vue'
 import ProductDetails from '@/views/ProductDetails.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
+import ContactUs from '@/views/ContactUs.vue'
+import ProductDisplay from '@/views/ProductDisplay.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +35,16 @@ const router = createRouter({
       path: '/signup',
       name: 'signup',
       component: SignupView,
+    },
+    {
+      path: '/contact-us',
+      name: 'contact-us',
+      component: ContactUs,
+    },
+    {
+      path: '/categories/:type',
+      name: 'products',
+      component: ProductDisplay,
     },
   ],
 })
