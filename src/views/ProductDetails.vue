@@ -30,12 +30,12 @@
             />
             </div>
         </div>
-  
+
         <!-- Right Side - Product Information -->
         <div class="space-y-6">
           <!-- Product Name -->
           <h1 class="text-3xl font-bold text-gray-900">{{ product.name }}</h1>
-  
+
           <!-- Reviews -->
           <div class="flex items-center space-x-4">
             <div class="flex items-center">
@@ -55,24 +55,24 @@
               </span>
             </div>
           </div>
-  
+
           <!-- Price -->
           <div class="space-y-2">
             <div class="flex items-center space-x-4">
               <span class="text-3xl font-bold text-gray-900">${{ product.discountPrice || product.price }}</span>
               <span v-if="product.discountPrice" class="text-xl text-gray-500 line-through">${{ product.price }}</span>
-              <span 
-                v-if="product.discountPrice" 
+              <span
+                v-if="product.discountPrice"
                 class="px-2 py-1 bg-red-100 text-red-700 text-sm font-medium rounded"
               >
                 {{ calculateDiscount(product.price, product.discountPrice) }}% OFF
               </span>
             </div>
           </div>
-  
+
           <!-- Description -->
           <p class="text-gray-600">{{ product.description }}</p>
-  
+
           <!-- Shipping Info -->
           <div class="border-t border-b border-gray-200 py-6">
             <div class="grid grid-cols-3 gap-4">
@@ -90,9 +90,9 @@
               </div>
             </div>
           </div>
-  
+
           <!-- Add to Cart Button -->
-          <button 
+          <button
             class="w-full bg-black text-white py-4 px-6 rounded-lg font-medium hover:bg-gray-800 transition-colors"
             @click="handleAddToCart"
           >
@@ -102,13 +102,15 @@
       </div>
     </div>
   </template>
-  
+
   <script setup lang="ts">
   import NavBar from '@/layouts/NavBar.vue';
   import { ref } from 'vue';
   import { useRoute } from 'vue-router';
-  import { Product } from '@/types';
-  
+  import type { Product } from '@/types/Product'
+  import {TruckIcon} from '@heroicons/vue/24/solid'
+
+
   // Example product data - replace with your API call
   const product = ref<Product>({
     id: '1',
@@ -125,22 +127,22 @@
     reviewCount: 128,
     description: 'This premium product features high-quality materials and exceptional craftsmanship. Perfect for those who appreciate fine details and superior performance.',
   });
-  
+
   const selectedImage = ref(product.value.images[0]);
-  
+
   const calculateDiscount = (originalPrice: number, discountPrice: number): number => {
     return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
   };
-  
+
   const handleAddToCart = () => {
     // Implement your add to cart logic here
     console.log('Adding to cart:', product.value.id);
   };
-  
+
   // In a real application, you would fetch the product data based on the route parameter
   const route = useRoute();
   const productId = route.params.id as string;
-  
+
   // Example of how to fetch product data
   // const fetchProductData = async () => {
   //   try {
@@ -152,7 +154,7 @@
   //     console.error('Error fetching product:', error);
   //   }
   // };
-  
+
   // onMounted(() => {
   //   fetchProductData();
   // });
