@@ -15,8 +15,7 @@
                         <!-- Caption -->
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="px-6 py-40">
-                                <h5 class="text-[#FCB300] font-koulen text-6xl md:text-7xl text-center"
-                                    style="font-family: Koulen, serif;">
+                                <h5 class="text-[#FCB300] tracking-wide text-6xl md:text-7xl text-center uppercase font-bold font-koulen">
                                     {{ slide.caption }}
                                 </h5>
                             </div>
