@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+
 </script>
 
 <template>
-  <header>
-    <!-- <div class="wrapper">
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div> -->
-  </header>
-
   <RouterView />
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Karta:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Prompt:wght@300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
+* {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+}
 
 
 header {

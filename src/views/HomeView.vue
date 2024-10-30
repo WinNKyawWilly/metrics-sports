@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ImageCarousel from '../components/storefront/ImageCarousel.vue'
-import NavBar from '@/components/storefront/NavBar.vue'
-import NewReleases from '@/components/storefront/NewReleases.vue'
-import PromoAds from '@/components/storefront/Promoads.vue'
-import FeaturedProduct from '@/components/storefront/FeaturedProduct.vue'
-import FooterSection from '@/components/storefront/FooterSection.vue'
+import ImageCarousel from '../components/ImageCarousel.vue'
+import NavBar from '@/layouts/NavBar.vue'
+import NewReleases from '@/components/NewReleases.vue'
+import PromoAds from '@/components/Promoads.vue'
+import FeaturedProduct from '@/components/FeaturedProduct.vue'
+import FooterSection from '@/components/FooterSection.vue'
 </script>
 
 <template>
