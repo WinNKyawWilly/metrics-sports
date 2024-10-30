@@ -14,6 +14,8 @@
                             class="text-gray-600 hover:text-gray-900 px-2 py-2 whitespace-nowrap text-sm font-medium">
                             {{ item.name }}
                         </a>
+                        <NavItem category="Shop" items />
+
                     </div>
                 </div>
 
@@ -79,6 +81,7 @@
 </template>
 
 <script lang="ts" setup>
+import NavItem from '@/components/NavItem.vue';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
