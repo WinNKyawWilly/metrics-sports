@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ImageCarousel from '../components/ImageCarousel.vue'
-import NavBar from '@/layouts/NavBar.vue'
 import NewReleases from '@/components/NewReleases.vue'
 import PromoAds from '@/components/Promoads.vue'
 import FeaturedProduct from '@/components/FeaturedProduct.vue'
@@ -22,7 +21,6 @@ function handleShopClick() {
 
 <template>
   <main>
-    <NavBar />
     <ImageCarousel />
     <NewReleases
       v-if="homePageProducts?.newProducts"
