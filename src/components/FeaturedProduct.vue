@@ -1,20 +1,17 @@
 <script lang="ts" setup>
 import type { Product } from '@/types/Product'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   products?: Product[]
 }>()
 
+const router = useRouter()
+
 const mediaBaseUrl = import.meta.env.VITE_MEDIA_BASE_URL
 
-function goToShop() {
-  // Add your navigation logic here
-  console.log('Navigating to shop page')
-}
-
-function goToProduct(productId: string) {
-  // Add your navigation logic here
-  console.log(`Navigating to product ${productId}`)
+function goToProduct(product: Product) {
+  router.push(`/products/${product.slug}`)
 }
 </script>
 
@@ -30,8 +27,8 @@ function goToProduct(productId: string) {
         <div
           v-for="product in products"
           :key="product.id"
-          @click="goToProduct(product.id)"
-          class="bg-amber-50 rounded-lg cursor-pointer overflow-hidden border border-amber-200 transition duration-300 ease-in-out hover:shadow-xl"
+          @click="goToProduct(product)"
+          class="bg-gray-50 rounded-lg cursor-pointer overflow-hidden border border-slate-300 transition duration-300 ease-in-out hover:shadow-xl"
         >
           <div class="aspect-w-16 aspect-h-9">
             <img
@@ -62,8 +59,8 @@ function goToProduct(productId: string) {
 
       <!-- Full Width Shop Now Section -->
       <div class="flex justify-center mt-16">
-        <button
-          @click="goToShop"
+        <RouterLink
+          to="/products"
           class="group px-12 py-4 border-2 border-amber-800 text-amber-800 font-semibold rounded-lg transition duration-300 ease-in-out hover:bg-black hover:border-black hover:text-white flex items-center justify-center space-x-3"
         >
           <span class="text-lg">Shop Collection</span>
@@ -79,7 +76,7 @@ function goToProduct(productId: string) {
               clip-rule="evenodd"
             />
           </svg>
-        </button>
+        </RouterLink>
       </div>
     </div>
   </section>

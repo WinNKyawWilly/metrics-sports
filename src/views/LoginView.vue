@@ -38,14 +38,6 @@ const navigateToSignUp = () => {
   <div class="min-h-screen flex">
     <!-- Left Side - Login Form -->
     <div class="w-full md:w-1/2 p-8 flex flex-col">
-      <div class="mb-8">
-        <img
-          src="/src/assets/images/Apex-logos_black.png"
-          alt="Logo"
-          class="h-12"
-        />
-      </div>
-
       <div
         class="max-w-md w-full mx-auto flex-grow flex flex-col justify-center"
       >

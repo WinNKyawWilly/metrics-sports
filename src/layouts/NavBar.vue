@@ -60,12 +60,12 @@
             class="w-full bg-gray-100 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div class="flex justify-start space-x-4 px-3 py-2">
-          <button class="text-gray-600 hover:text-gray-900" href="/checkout">
-            <i class="fa-solid fa-cart-shopping fa-lg" style="color: #19204e"></i>
-          </button>
-          <button class="text-gray-600 hover:text-gray-900" href="/login">
-            <i class="fa-solid fa-user fa-lg" style="color: #19204e"></i>
-          </button>
+          <RouterLink to="/checkout" class="text-gray-600 hover:text-gray-900">
+            <ShoppingBagIcon class="size-6"></ShoppingBagIcon>
+          </RouterLink>
+          <RouterLink to="/login" class="text-gray-600 hover:text-gray-900">
+            <UserCircleIcon class="size-6"></UserCircleIcon>
+          </RouterLink>
         </div>
       </div>
     </div>

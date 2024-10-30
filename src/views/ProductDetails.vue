@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { productService } from '@/services/ProductService'
 import type { Product } from '@/types/Product'
 import LoaderComponent from '@/components/LoaderComponent.vue'
+import { toast } from 'vue3-toastify'
+import { useCartStore } from '@/stores/cart'
 
 // Example product data - replace with your API call
 const loading = ref<boolean>(true)
 
 const product = ref<Product>()
 const selectedImage = ref<string>()
+const cartStore = useCartStore()
 
 const calculateDiscount = (
   originalPrice: number,
@@ -19,17 +22,27 @@ const calculateDiscount = (
 }
 const mediaBaseUrl = ref<string>(import.meta.env.VITE_MEDIA_BASE_URL)
 const handleAddToCart = () => {
-  // Implement your add to cart logic here
-  console.log('Adding to cart:', product.value.id)
+  cartStore.addItem({
+    product: product.value,
+    quantity: 1,
+  })
+  toast('Added to cart successfully.', { type: 'success' })
 }
 
 // In a real application, you would fetch the product data based on the route parameter
 const route = useRoute()
+const router = useRouter()
 const productId = route.params.id as string
 
 async function fetchData() {
   loading.value = true
-  product.value = (await productService.getProduct(productId)).product
+  try {
+    product.value = (await productService.getProduct(productId)).product
+  } catch (error) {
+    console.error('Error fetching product:', error)
+    await router.push('/')
+    setTimeout(() => toast('Invalid Product', { type: 'error' }), 500)
+  }
   selectedImage.value = product.value.images[0]
   loading.value = false
 }
