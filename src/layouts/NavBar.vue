@@ -88,7 +88,7 @@ const searchQuery = ref('')
 const navItems = ref([
   { name: 'Shop', href: '/products' },
   { name: 'Brands', href: '/categories/brands' },
-  { name: 'Accessories', href: '/categories/brands' },
+  { name: 'Accessories', href: '/categories/accessories' },
   { name: 'Sportswear', href: '/categories/sportswear' },
   { name: 'Contact us', href: '/contact-us' },
 ])

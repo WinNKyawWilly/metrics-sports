@@ -97,5 +97,7 @@ onMounted(() => {
   fetchCategories()
 })
 
+watch(currentCategoryType, fetchCategories)
+
 watch(currentCategory, fetchProducts)
 </script>
