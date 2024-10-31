@@ -11,7 +11,7 @@ const router = useRouter()
 const navigateToProduct = product => {
   router.push(`/products/${product.slug}`)
 }
-const mediaBaseUrl = ref<string>(import.meta.env.VITE_MEDIA_BASE_URL);
+const mediaBaseUrl = import.meta.env.VITE_MEDIA_BASE_URL;
 </script>
 <template>
   <!-- Container with max-width constraint -->

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { Customer } from '@/types/Customer'
-import { CustomerAuthService } from '@/services/CustomerAuthService'
+import { CustomerAuthService, type SignUpPayload } from '@/services/CustomerAuthService'
 import { useStorage } from '@vueuse/core'
 
 interface AuthState {
@@ -12,11 +12,11 @@ export const useAuthStore = defineStore('auth', {
   state: (): AuthState =>
     useStorage('auth', {
       token: null,
-      customer: null,
+      customer: null
     }).value,
   getters: {
     isLoggedIn: state => !!state.token,
-    getCustomer: state => state.customer,
+    getCustomer: state => state.customer
   },
   actions: {
     async login(email: string, password: string) {
@@ -26,10 +26,17 @@ export const useAuthStore = defineStore('auth', {
       localStorage.setItem('token', this.token)
       return this.customer
     },
+    async signup(signupPayload: SignUpPayload) {
+      const data = await CustomerAuthService.signup(signupPayload)
+      this.token = data.token
+      this.customer = data.customer
+      localStorage.setItem('token', this.token)
+      return this.customer
+    },
     logout() {
       this.token = null
       this.customer = null
       localStorage.removeItem('token')
-    },
-  },
+    }
+  }
 })

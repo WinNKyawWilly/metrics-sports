@@ -10,10 +10,10 @@
 
         <div class="hidden lg:flex flex-1 overflow-x-auto">
           <div class="flex space-x-4">
-            <a v-for="(item, index) in navItems" :key="index" :href="item.href"
+            <RouterLink v-for="(item, index) in navItems" :key="index" :to="item.href"
               class="text-gray-600 hover:text-gray-900 px-2 py-2 whitespace-nowrap text-sm font-medium">
               {{ item.name }}
-            </a>
+            </RouterLink>
           </div>
         </div>
 
@@ -24,10 +24,10 @@
               class="bg-slate-100 rounded-full py-1 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64" />
             <MagnifyingGlassIcon class="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4"></MagnifyingGlassIcon>
           </div>
-          <RouterLink to="/checkout" class="text-gray-600 hover:text-gray-900">
+          <RouterLink to="/cart" class="text-gray-600 hover:text-gray-900">
             <ShoppingBagIcon class="size-6"></ShoppingBagIcon>
           </RouterLink>
-          <RouterLink to="/login" class="text-gray-600 hover:text-gray-900">
+          <RouterLink :to="isLoggedIn ? '/account' : '/login'" class="text-gray-600 hover:text-gray-900">
             <UserCircleIcon class="size-6"></UserCircleIcon>
           </RouterLink>
         </div>
@@ -60,10 +60,10 @@
             class="w-full bg-gray-100 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div class="flex justify-start space-x-4 px-3 py-2">
-          <RouterLink to="/checkout" class="text-gray-600 hover:text-gray-900">
+          <RouterLink to="/cart" class="text-gray-600 hover:text-gray-900">
             <ShoppingBagIcon class="size-6"></ShoppingBagIcon>
           </RouterLink>
-          <RouterLink to="/login" class="text-gray-600 hover:text-gray-900">
+          <RouterLink :to="isLoggedIn ? '/account' : '/login'" class="text-gray-600 hover:text-gray-900">
             <UserCircleIcon class="size-6"></UserCircleIcon>
           </RouterLink>
         </div>
@@ -80,20 +80,26 @@ import {
   MagnifyingGlassIcon,
   UserCircleIcon,
 } from '@heroicons/vue/24/outline'
+import { useAuthStore } from '@/stores/auth'
+import { storeToRefs } from 'pinia'
 
 const isMenuOpen = ref(false)
 const searchQuery = ref('')
 const navItems = ref([
   { name: 'Shop', href: '/products' },
-  { name: 'Brands', href: '/categories/brand' },
-  { name: 'Accessories', href: '#' },
-  { name: 'Sportswear', href: '#' },
+  { name: 'Brands', href: '/categories/brands' },
+  { name: 'Accessories', href: '/categories/brands' },
+  { name: 'Sportswear', href: '/categories/sportswear' },
   { name: 'Contact us', href: '/contact-us' },
 ])
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
 }
+
+const authStore = useAuthStore();
+
+const {isLoggedIn} = storeToRefs(authStore)
 </script>
 
 <style></style>

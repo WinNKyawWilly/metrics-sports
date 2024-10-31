@@ -21,4 +21,35 @@ export const productService = {
     const { data } = await apiClient.get(`/products/${productId}`)
     return data
   },
+
+  async getProducts(page: number, search?: string): Promise<Product[]> {
+    const { data } = await apiClient.get('/products', {
+      params: {
+        page,
+        q: search,
+      },
+    })
+
+    return data
+  },
+
+  async getCategoriesByType(
+    typeSlug: string,
+  ): Promise<{ name: string; slug: string }[]> {
+    const { data } = await apiClient.get(`/products/types/${typeSlug}`)
+    return data
+  },
+
+  async getProductsByCategory(
+    categorySlug: string,
+    page: number,
+  ): Promise<Product[]> {
+    const { data } = await apiClient.get(`/products/category/${categorySlug}`, {
+      params: {
+        page,
+      },
+    })
+
+    return data
+  },
 }

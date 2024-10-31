@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import './assets/main.css'
 import { createPinia } from 'pinia'
-import Vue3Toastify from 'vue3-toastify'
+import Vue3Toastify, { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css';
 
 
@@ -14,6 +14,7 @@ app.use(router)
 app.use(pinia)
 app.use(Vue3Toastify, {
   autoClose: 3000,
+  position: toast.POSITION.BOTTOM_RIGHT
 })
 
 app.mount('#app')

@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, type Ref, ref } from 'vue'
 import { type CartItem, useCartStore } from '@/stores/cart'
 import { storeToRefs } from 'pinia'
+import { type CartItemDto, CheckoutService } from '@/services/CheckoutService'
+import { useAuthStore } from '@/stores/auth'
+import { toast } from 'vue3-toastify'
+import { useRouter } from 'vue-router'
 
 const cartStore = useCartStore()
 
-const { getItems: cartItems }: { getItems: CartItem[] } = storeToRefs(cartStore)
+const { getItems: cartItems }: { getItems: Ref<CartItem[]> } = storeToRefs(cartStore)
 
 const total = computed(() =>
   cartItems.value.reduce(
@@ -17,6 +21,37 @@ const mediaBaseUrl = ref<string>(import.meta.env.VITE_MEDIA_BASE_URL)
 
 function handleQuantityChange(index: number, change: number) {
   cartStore.changeQuantity(index, change)
+}
+
+const authStore = useAuthStore()
+
+const { isLoggedIn } = storeToRefs(authStore)
+
+const router = useRouter()
+
+async function checkout() {
+  if (isLoggedIn.value) {
+    const cartItemsDto: CartItemDto = cartItems.value.map(item => ({
+      product_id: item.product.id,
+      quantity: item.quantity,
+    }))
+    await CheckoutService.processCheckout(cartItemsDto)
+    cartStore.clear()
+    await router.push('/account')
+    setTimeout(() => {
+      toast('Checkout successful', {
+        type: 'success',
+      })
+    }, 500)
+  } else {
+    await router.push('/login')
+
+    setTimeout(() => {
+      toast('Please login to checkout', {
+        type: 'info',
+      })
+    }, 500)
+  }
 }
 </script>
 
@@ -93,6 +128,7 @@ function handleQuantityChange(index: number, change: number) {
         </table>
         <div class="mt-4 text-right">
           <button
+            @click="checkout"
             class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
           >
             Checkout
@@ -101,9 +137,19 @@ function handleQuantityChange(index: number, change: number) {
       </div>
 
       <div v-else class="flex justify-center items-center flex-col mt-6">
-        <img src="/src/assets/images/empty-cart.svg" alt="Empty Cart" class="w-1/4">
-        <p class="text-gray-800 text-[1.5rem] text-center mt-7 font-bold">It's empty here.</p>
-        <RouterLink to="/" class="bg-gray-800 px-4 py-2 text-white rounded mt-3 text-sm ">Continue Shopping</RouterLink>
+        <img
+          src="/src/assets/images/empty-cart.svg"
+          alt="Empty Cart"
+          class="w-1/4"
+        />
+        <p class="text-gray-800 text-[1.5rem] text-center mt-7 font-bold">
+          It's empty here.
+        </p>
+        <RouterLink
+          to="/"
+          class="bg-gray-800 px-4 py-2 text-white rounded mt-3 text-sm"
+          >Continue Shopping
+        </RouterLink>
       </div>
     </div>
   </div>

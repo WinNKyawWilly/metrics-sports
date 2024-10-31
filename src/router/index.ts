@@ -47,7 +47,7 @@ const router = createRouter({
     },
     {
       path: '/categories/:type',
-      name: 'products',
+      name: 'category-product',
       component: ProductDisplay,
     },
     {

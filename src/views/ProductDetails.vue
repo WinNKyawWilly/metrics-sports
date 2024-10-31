@@ -13,7 +13,9 @@ const loading = ref<boolean>(true)
 const product = ref<Product>()
 const selectedImage = ref<string>()
 const cartStore = useCartStore()
-
+defineProps<{
+  id: string
+}>()
 const calculateDiscount = (
   originalPrice: number,
   discountPrice: number,

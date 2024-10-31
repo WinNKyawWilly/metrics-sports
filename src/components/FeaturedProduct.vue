@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import type { Product } from '@/types/Product'
 import { useRouter } from 'vue-router'
-
-const props = defineProps<{
+defineProps<{
   products?: Product[]
 }>()
-
 const router = useRouter()
 
 const mediaBaseUrl = import.meta.env.VITE_MEDIA_BASE_URL
